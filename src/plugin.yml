@@ -1,0 +1,5 @@
+name:  TogglePvP
+version: 0.1
+author: Worf2340
+main: com.mctng.togglepvp.TogglePvP
+api-version: 1.13

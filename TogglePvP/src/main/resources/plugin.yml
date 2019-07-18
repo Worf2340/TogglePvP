@@ -1,0 +1,19 @@
+name: TogglePvP
+version: ${project.version}
+main: com.mctng.togglepvp.togglepvp.TogglePvP
+api-version: 1.13
+authors: [Worf2340]
+description: A plugin to toggle PvP per player.
+website: www.mctng.com
+
+
+commands:
+  healme:
+    description: Healing command
+    usage: /healme
+  togglepvp:
+    description: Toggle PvP for a player
+    usage: /togglepvp [player] [on/off]
+  pvpstatus:
+    description: Check PvP Status of a player
+    usage: /pvpstatus [player]
