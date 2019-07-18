@@ -4,5 +4,4 @@ import org.bukkit.entity.Player;
 
 public class PvPPlayer {
 
-
 }

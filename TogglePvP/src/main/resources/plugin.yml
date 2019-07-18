@@ -13,7 +13,7 @@ commands:
     usage: /healme
   togglepvp:
     description: Toggle PvP for a player
-    usage: /togglepvp [player] [on/off]
+    usage: /togglepvp [player] [on/off] <duration>
   pvpstatus:
     description: Check PvP Status of a player
     usage: /pvpstatus <player>

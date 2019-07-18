@@ -25,10 +25,10 @@ public class PvPStatus implements CommandExecutor {
             Player player = (Player) sender;
 
             if (pvpList.contains(player.getUniqueId())) {
-                player.sendMessage(ChatColor.RED + "You have PvP disabled.");
+                player.sendMessage(ChatColor.GREEN + "You have PvP protection enabled.");
             }
             else {
-                player.sendMessage(ChatColor.GREEN + "You have PvP enabled.");
+                player.sendMessage(ChatColor.RED + "You have PvP protection disabled.");
             }
             return true;
 
@@ -46,10 +46,10 @@ public class PvPStatus implements CommandExecutor {
 
         if (player.hasPermission("togglepvp.pvpstatus.others")) {
             if (pvpList.contains(checkPlayer.getUniqueId())) {
-                player.sendMessage(ChatColor.RED + "PvP is disabled for " + checkPlayer.getName());
+                player.sendMessage(ChatColor.GREEN + "PvP protection is enabled for " + checkPlayer.getName() + ".");
             }
             else {
-                player.sendMessage(ChatColor.GREEN + "PvP is enabled for " + checkPlayer.getName());
+                player.sendMessage(ChatColor.RED + "PvP protection is disabled for " + checkPlayer.getName() + ".");
             }
             return true;
         }

@@ -21,7 +21,14 @@ public class MyEvents implements Listener {
     @EventHandler
     public void onPvp(EntityDamageByEntityEvent event){
         System.out.println(pvpList);
+
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
         Player p = (Player) event.getEntity();
+
+
 
 
         // Cancel PvP if the attacker is a player who has PvP protection
@@ -67,7 +74,7 @@ public class MyEvents implements Listener {
                 if (potion.getShooter() instanceof Player){
                     if (potion.getShooter() != p) {
                         event.setCancelled(true);
-                        ((Player) potion.getShooter()).sendMessage(ChatColor.RED + "That player has PvP disabled!");
+                        ((Player) potion.getShooter()).sendMessage(ChatColor.RED + "That player has PvP protection!");
                         return;
                     }
                 }
