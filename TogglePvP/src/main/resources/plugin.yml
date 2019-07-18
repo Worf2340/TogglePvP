@@ -1,6 +1,6 @@
 name: TogglePvP
 version: ${project.version}
-main: com.mctng.togglepvp.togglepvp.TogglePvP
+main: com.mctng.togglepvp.TogglePvP
 api-version: 1.13
 authors: [Worf2340]
 description: A plugin to toggle PvP per player.
@@ -16,4 +16,9 @@ commands:
     usage: /togglepvp [player] [on/off]
   pvpstatus:
     description: Check PvP Status of a player
-    usage: /pvpstatus [player]
+    usage: /pvpstatus <player>
+
+permissions:
+  togglepvp.pvpstatus.others:
+    description: Check pvp status of other players
+    default: op

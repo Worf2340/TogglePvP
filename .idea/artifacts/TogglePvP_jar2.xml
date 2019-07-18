@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="TogglePvP:jar">
+  <artifact type="jar" name="TogglePvP:jar2">
     <output-path>$PROJECT_DIR$/../../Spigot 1.13 Server/plugins</output-path>
     <root id="archive" name="TogglePvP.jar">
       <element id="module-output" name="TogglePvP" />

@@ -1,13 +1,10 @@
-package com.mctng.togglepvp.togglepvp;
+package com.mctng.togglepvp;
 
-import com.mctng.togglepvp.togglepvp.commands.PvPStatus;
-import org.bukkit.command.Command;
-import org.bukkit.entity.Player;
+import com.mctng.togglepvp.commands.PvPStatus;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public final class TogglePvP extends JavaPlugin {
@@ -16,7 +13,7 @@ public final class TogglePvP extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getCommand("togglepvp").setExecutor(new TogglePvP());
+        this.getCommand("togglepvp").setExecutor(new com.mctng.togglepvp.commands.TogglePvP());
         this.getCommand("pvpstatus").setExecutor(new PvPStatus());
         this.getServer().getPluginManager().registerEvents(new MyEvents(), this);
 
