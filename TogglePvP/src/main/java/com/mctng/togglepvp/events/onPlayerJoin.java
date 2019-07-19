@@ -1,4 +1,6 @@
 package com.mctng.togglepvp.events;
 
-public class onPlayerJoin {
+import org.bukkit.event.Listener;
+
+public class onPlayerJoin implements Listener {
 }
