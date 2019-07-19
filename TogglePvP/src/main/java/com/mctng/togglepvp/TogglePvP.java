@@ -1,11 +1,12 @@
 package com.mctng.togglepvp;
 
 import com.mctng.togglepvp.commands.PvPStatus;
-import com.mctng.togglepvp.sql.Database;
+import com.mctng.togglepvp.events.onPvP;
+import com.mctng.togglepvp.sql.CreateDatabase;
 import com.mctng.togglepvp.sql.SQLite;
+import com.mctng.togglepvp.testsql.Database;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,13 +16,13 @@ import java.util.UUID;
 public final class TogglePvP extends JavaPlugin {
 
     public static ArrayList<UUID> pvpList;
-    private Database db;
+//    private Database db;
 
     @Override
     public void onEnable() {
         this.getCommand("togglepvp").setExecutor(new com.mctng.togglepvp.commands.TogglePvP(this));
         this.getCommand("pvpstatus").setExecutor(new PvPStatus());
-        this.getServer().getPluginManager().registerEvents(new MyEvents(), this);
+        this.getServer().getPluginManager().registerEvents(new onPvP(), this);
 
         // Create TogglePvP folder
         if (Files.notExists(Paths.get("plugins/TogglePvP"))){
@@ -29,9 +30,13 @@ public final class TogglePvP extends JavaPlugin {
             dir.mkdir();
         }
 
+
+        SQLite SQLHandler = new SQLite(this, "plugins/TogglePvP/pvp_list.db");
+        SQLHandler.connect();
+        SQLHandler.createNewTable();
+
         pvpList = new ArrayList<>();
-        this.db = new SQLite(this);
-        this.db.load();
+
 
         // Load pvplist data
         try
@@ -74,9 +79,5 @@ public final class TogglePvP extends JavaPlugin {
             ioe.printStackTrace();
         }
 
-    }
-
-    public Database getRDatabase(){
-        return this.db;
     }
 }

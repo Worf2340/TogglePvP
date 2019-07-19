@@ -1,4 +1,4 @@
-package com.mctng.togglepvp;
+package com.mctng.togglepvp.events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LingeringPotion;
@@ -10,16 +10,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import static com.mctng.togglepvp.TogglePvP.pvpList;
 
-
-public class MyEvents implements Listener {
-//    @EventHandler
-//    public void onMove(PlayerMoveEvent event){
-//        Player player = event.getPlayer();
-//        player.sendMessage(ChatColor.GREEN + "You're movin.");
-//    }
+public class onPvP implements Listener {
 
     @EventHandler
-    public void onPvp(EntityDamageByEntityEvent event){
+    public void onPvp(EntityDamageByEntityEvent event) {
         System.out.println(pvpList);
 
         if (!(event.getEntity() instanceof Player)) {
@@ -29,19 +23,17 @@ public class MyEvents implements Listener {
         Player p = (Player) event.getEntity();
 
 
-
-
         // Cancel PvP if the attacker is a player who has PvP protection
-        if ((event.getDamager() instanceof Player) && (pvpList.contains(event.getDamager().getUniqueId())) && (event.getEntity() instanceof Player)){
-                event.setCancelled(true);
-                event.getDamager().sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
-                return;
+        if ((event.getDamager() instanceof Player) && (pvpList.contains(event.getDamager().getUniqueId())) && (event.getEntity() instanceof Player)) {
+            event.setCancelled(true);
+            event.getDamager().sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
+            return;
         }
 
         // Cancel PvP if the attacker is a PvP protected player who threw a splash potion
-        if ((event.getDamager() instanceof ThrownPotion) && (((ThrownPotion) event.getDamager()).getShooter() instanceof Player) && (event.getEntity() instanceof Player)){
+        if ((event.getDamager() instanceof ThrownPotion) && (((ThrownPotion) event.getDamager()).getShooter() instanceof Player) && (event.getEntity() instanceof Player)) {
             Player shooter = (Player) ((ThrownPotion) event.getDamager()).getShooter();
-            if ((pvpList.contains(shooter.getUniqueId())) && (shooter != event.getEntity())){
+            if ((pvpList.contains(shooter.getUniqueId())) && (shooter != event.getEntity())) {
                 event.setCancelled(true);
                 shooter.sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
                 return;
@@ -58,20 +50,20 @@ public class MyEvents implements Listener {
 //            }
 //        }
 
-        if (event.getDamager() instanceof LingeringPotion){
+        if (event.getDamager() instanceof LingeringPotion) {
             System.out.println(event.getDamager());
         }
 
         // Cancel PvP if the defender has PvP protection
-        if ((event.getEntity() instanceof Player) && (pvpList.contains(event.getEntity().getUniqueId()))){
-            if (event.getDamager() instanceof Player){
+        if ((event.getEntity() instanceof Player) && (pvpList.contains(event.getEntity().getUniqueId()))) {
+            if (event.getDamager() instanceof Player) {
                 event.setCancelled(true);
                 event.getDamager().sendMessage(ChatColor.RED + "That player has PvP protection!");
                 return;
             }
-            if (event.getDamager() instanceof ThrownPotion){
+            if (event.getDamager() instanceof ThrownPotion) {
                 ThrownPotion potion = (ThrownPotion) event.getDamager();
-                if (potion.getShooter() instanceof Player){
+                if (potion.getShooter() instanceof Player) {
                     if (potion.getShooter() != p) {
                         event.setCancelled(true);
                         ((Player) potion.getShooter()).sendMessage(ChatColor.RED + "That player has PvP protection!");

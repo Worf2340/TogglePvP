@@ -1,4 +1,4 @@
-package com.mctng.togglepvp.sql;
+package com.mctng.togglepvp.testsql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,6 @@ import java.util.logging.Level;
 
 import org.bukkit.entity.Player;
 
-import com.mctng.togglepvp.sql.Error; // YOU MUST IMPORT THE CLASS ERROR, AND ERRORS!!!
-import com.mctng.togglepvp.sql.Errors;
 import com.mctng.togglepvp.TogglePvP;
 
 
@@ -17,7 +15,7 @@ public abstract class Database {
     TogglePvP plugin;
     Connection connection;
     // The name of the table we created back in SQLite class.
-    public String table = "table_name";
+    public String table = "pvp_list";
     public int tokens = 0;
     public Database(TogglePvP instance){
         plugin = instance;

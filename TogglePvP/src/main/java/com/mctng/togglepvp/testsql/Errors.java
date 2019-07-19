@@ -1,4 +1,4 @@
-package com.mctng.togglepvp.sql;
+package com.mctng.togglepvp.testsql;
 
 
 public class Errors {
