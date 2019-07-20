@@ -5,6 +5,7 @@
 ## Commands
 * /togglepvp [player] [on/off] <duration>
   - Description: Toggles PvP on/off for a player, with an optional duration.
+    * Example: /togglepvp Worf2340 off 30m would disable PvP for Worf2340 for 30m.
 * /pvpstatus <player>
   - Description: Checks whether a player has PvP protection. If no player is specified, the sender of the command will be checked. 
   
