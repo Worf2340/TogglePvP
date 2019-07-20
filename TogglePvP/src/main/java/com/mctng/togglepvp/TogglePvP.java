@@ -36,6 +36,7 @@ public final class TogglePvP extends JavaPlugin {
         SQLHandler.connect();
         SQLHandler.createNewTable();
 
+        this.getLogger().info("Running latest branch.");
     }
 
     @Override
