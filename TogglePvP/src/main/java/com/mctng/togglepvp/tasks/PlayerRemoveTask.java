@@ -21,8 +21,8 @@ public class PlayerRemoveTask extends BukkitRunnable {
     @Override
     public void run() {
 
-        TogglePvP.pvpList.remove(this.player.getUniqueId());
-        this.player.sendMessage(ChatColor.RED + "PvP protection disabled.");
-        System.out.println("h?");
+//        TogglePvP.pvpList.remove(this.player.getUniqueId());
+//        this.player.sendMessage(ChatColor.RED + "PvP protection disabled.");
+//        System.out.println("h?");
     }
 }
