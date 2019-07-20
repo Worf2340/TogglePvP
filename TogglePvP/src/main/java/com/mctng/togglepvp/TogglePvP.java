@@ -4,8 +4,10 @@ import com.mctng.togglepvp.commands.PvPStatus;
 import com.mctng.togglepvp.events.onPvP;
 import com.mctng.togglepvp.sql.CreateDatabase;
 import com.mctng.togglepvp.sql.SQLite;
+import com.mctng.togglepvp.tasks.ProtectionExpirationTask;
 import com.mctng.togglepvp.testsql.Database;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -36,6 +38,7 @@ public final class TogglePvP extends JavaPlugin {
         SQLHandler.connect();
         SQLHandler.createNewTable();
 
+        BukkitTask protectionExpirationTask = new ProtectionExpirationTask(this).runTaskTimer(this, 0, 1);
         this.getLogger().info("Running latest branch.");
     }
 

@@ -19,16 +19,17 @@ public class TogglePvP implements CommandExecutor {
         this.plugin = plugin;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if ((args.length != 2) && (args.length != 3)){
+        if ((args.length != 2) && (args.length != 3)) {
             return false;
         }
 
         // Parse player from args
         Player player = Bukkit.getServer().getPlayer(args[0]);
-        if (player == null){
+        if (player == null) {
             sender.sendMessage(ChatColor.RED + "Invalid player name!");
             return true;
         }
@@ -38,11 +39,11 @@ public class TogglePvP implements CommandExecutor {
         if (args.length == 2) {
             if (args[1].equalsIgnoreCase("on")) {
                 // Do nothing if player is not PvP protected
-                if (!(pvpPlayers.containsKey(player.getUniqueId()))){
+                if (!(pvpPlayers.containsKey(player.getUniqueId()))) {
                     sender.sendMessage(ChatColor.RED + "PvP protection already disabled for " + player.getName() + ".");
                     return true;
                 }
-                if (!(pvpPlayers.get(player.getUniqueId()).hasProtection)){
+                if (!(pvpPlayers.get(player.getUniqueId()).hasProtection)) {
                     sender.sendMessage(ChatColor.RED + "PvP protection already disabled for " + player.getName() + ".");
                     return true;
                 }
@@ -50,55 +51,82 @@ public class TogglePvP implements CommandExecutor {
                 pvpPlayers.get(player.getUniqueId()).duration = 0;
                 sender.sendMessage(ChatColor.RED + "PvP protection disabled for " + player.getName() + ".");
                 return true;
-            }
-            else if (args[1].equalsIgnoreCase("off")) {
+            } else if (args[1].equalsIgnoreCase("off")) {
                 // Create a new PvpPlayer object if one doesn't already exist in pvpPlayers
                 PvpPlayer pvpPlayer;
-                if (pvpPlayers.containsKey(player.getUniqueId())){
-                    if (pvpPlayers.get(player.getUniqueId()).hasProtection){
+                if (pvpPlayers.containsKey(player.getUniqueId())) {
+                    if (pvpPlayers.get(player.getUniqueId()).hasProtection) {
                         sender.sendMessage(ChatColor.GREEN + "PvP protection already enabled for " + player.getName() + ".");
                         return true;
                     }
                     pvpPlayer = pvpPlayers.get(player.getUniqueId());
                     pvpPlayer.hasProtection = true;
                     pvpPlayer.duration = -1;
-                }
-                else {
+                } else {
                     pvpPlayer = new PvpPlayer(player, true, -1);
                 }
                 pvpPlayers.put(player.getUniqueId(), pvpPlayer);
                 sender.sendMessage(ChatColor.GREEN + "PvP protection enabled for " + player.getName() + ".");
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
         // PvP protection timed
         else {
             //region Parse time units
-            String units = args[2].substring(args[2].length()-1);
-            int delay = Integer.parseInt(args[2].substring(0, args[2].length()-1));
-            int multiple;
+            String units = args[2].substring(args[2].length() - 1);
+            int delay;
 
-            if (units.equalsIgnoreCase("s")){
-                multiple = 20;
+            try {
+                delay = Integer.parseInt(args[2].substring(0, args[2].length() - 1));
             }
-            else if (units.equalsIgnoreCase("m")){
+            catch (NumberFormatException e){
+                player.sendMessage(ChatColor.RED + "Please enter a valid time!");
+                return true;
+            }
+
+            int multiple;
+            if (units.equalsIgnoreCase("m")) {
                 multiple = 1200;
-            }
-            else if (units.equalsIgnoreCase("h")){
+            } else if (units.equalsIgnoreCase("h")) {
                 multiple = 72000;
             }
+            else if (units.equalsIgnoreCase("s")){
+                multiple = 20;
+            }
             else {
-                return false;
+                player.sendMessage(ChatColor.RED + "The valid time units are hours(h) and minutes(m).");
+                return true;
             }
 
             int adjustedDelay = multiple * delay;
             //endregion
+            if (args[1].equalsIgnoreCase("on")) {
+                player.sendMessage("You can only toggle a player's PvP off using the duration parameter");
+                return true;
+            }
+            else if (args[1].equalsIgnoreCase("off")) {
+                // Create a new PvpPlayer object if one doesn't already exist in pvpPlayers
+                PvpPlayer pvpPlayer;
+                if (pvpPlayers.containsKey(player.getUniqueId())) {
+                    if (pvpPlayers.get(player.getUniqueId()).hasProtection) {
+                        sender.sendMessage(ChatColor.GREEN + "PvP protection already enabled for " + player.getName() + ".");
+                        return true;
+                    }
+                    pvpPlayer = pvpPlayers.get(player.getUniqueId());
+                    pvpPlayer.hasProtection = true;
+                    pvpPlayer.duration = adjustedDelay;
+                } else {
+                    pvpPlayer = new PvpPlayer(player, true, adjustedDelay);
+                }
+                pvpPlayers.put(player.getUniqueId(), pvpPlayer);
+                sender.sendMessage(ChatColor.GREEN + "PvP protection enabled for " + player.getName() + " for " + delay + units + ".");
+                return true;
+            } else {
+                return false;
+            }
         }
-
-        return true;
     }
 
 }
