@@ -1,6 +1,7 @@
 package com.mctng.togglepvp.commands;
 
 import com.mctng.togglepvp.PvpPlayer;
+import com.mctng.togglepvp.tasks.PlayerRemoveTask;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -33,7 +34,7 @@ public class TogglePvP implements CommandExecutor {
         }
 
 
-        //region Pvp Protection Untimed
+        // PvP protection untimed
         if (args.length == 2) {
             if (args[1].equalsIgnoreCase("on")) {
                 // Do nothing if player is not PvP protected
@@ -41,16 +42,23 @@ public class TogglePvP implements CommandExecutor {
                     sender.sendMessage(ChatColor.RED + "PvP protection already disabled for " + player.getName() + ".");
                     return true;
                 }
+                if (!(pvpPlayers.get(player.getUniqueId()).hasProtection)){
+                    sender.sendMessage(ChatColor.RED + "PvP protection already disabled for " + player.getName() + ".");
+                    return true;
+                }
                 pvpPlayers.get(player.getUniqueId()).hasProtection = false;
                 pvpPlayers.get(player.getUniqueId()).duration = 0;
                 sender.sendMessage(ChatColor.RED + "PvP protection disabled for " + player.getName() + ".");
                 return true;
-
             }
             else if (args[1].equalsIgnoreCase("off")) {
                 // Create a new PvpPlayer object if one doesn't already exist in pvpPlayers
                 PvpPlayer pvpPlayer;
                 if (pvpPlayers.containsKey(player.getUniqueId())){
+                    if (pvpPlayers.get(player.getUniqueId()).hasProtection){
+                        sender.sendMessage(ChatColor.GREEN + "PvP protection already enabled for " + player.getName() + ".");
+                        return true;
+                    }
                     pvpPlayer = pvpPlayers.get(player.getUniqueId());
                     pvpPlayer.hasProtection = true;
                     pvpPlayer.duration = -1;
@@ -66,48 +74,30 @@ public class TogglePvP implements CommandExecutor {
                 return false;
             }
         }
-        //endregion
+        // PvP protection timed
+        else {
+            //region Parse time units
+            String units = args[2].substring(args[2].length()-1);
+            int delay = Integer.parseInt(args[2].substring(0, args[2].length()-1));
+            int multiple;
 
-        //<editor-fold desc="PvP Protection Timed">
-//        String units = args[2].substring(args[2].length()-1);
-//        int delay = Integer.parseInt(args[2].substring(0, args[2].length()-1));
-//        int multiple;
-//
-//
-//        if (units.equalsIgnoreCase("s")){
-//            multiple = 20;
-//        }
-//        else if (units.equalsIgnoreCase("m")){
-//            multiple = 1200;
-//        }
-//        else if (units.equalsIgnoreCase("h")){
-//            multiple = 72000;
-//        }
-//        else {
-//            return false;
-//        }
-//
-//        System.out.println(units);
-//        System.out.println(delay);
-//        int adjustedDelay = multiple * delay;
-//
-//
-//        if (args[1].equalsIgnoreCase("on")) {
-//            sender.sendMessage(ChatColor.GREEN + "PvP protection disabled for " + player.getName() + ".");
-//            pvpList.remove(player.getUniqueId());
-//            return true;
-//        }
-//        else if (args[1].equalsIgnoreCase("off")) {
-//            sender.sendMessage(ChatColor.GREEN + "PvP protection enabled for " + player.getName() + ".");
-//            pvpList.add(player.getUniqueId());
-//            new PlayerRemoveTask(plugin, player).runTaskLater(plugin, adjustedDelay);
-//            return true;
-//        }
-//        else {
-//            //sender.sendMessage(ChatColor.RED + "Usage: /togglepvp [player] [on/off]");
-//            return false;
-//        }
-        //</editor-fold>
+            if (units.equalsIgnoreCase("s")){
+                multiple = 20;
+            }
+            else if (units.equalsIgnoreCase("m")){
+                multiple = 1200;
+            }
+            else if (units.equalsIgnoreCase("h")){
+                multiple = 72000;
+            }
+            else {
+                return false;
+            }
+
+            int adjustedDelay = multiple * delay;
+            //endregion
+        }
+
         return true;
     }
 
