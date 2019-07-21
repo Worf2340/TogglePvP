@@ -2,11 +2,10 @@ package com.mctng.togglepvp.sql;
 
 import com.mctng.togglepvp.TogglePvP;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.UUID;
 
 import static org.bukkit.Bukkit.getLogger;
 
@@ -20,26 +19,16 @@ public class SQLite {
         this.filePath = filePath;
     }
 
-    public void connect(){
+    private Connection connect(){
+        // SQLite connection string
+        String url = "jdbc:sqlite:" + this.filePath;
         Connection conn = null;
         try {
-            // db parameters
-            String url = "jdbc:sqlite:" + this.filePath;
-            // create a connection to the database
             conn = DriverManager.getConnection(url);
-            this.plugin.getLogger().info("Connection to SQLite Database has been established.");
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
         }
+        return conn;
     }
 
     public void createNewTable(){
@@ -48,8 +37,7 @@ public class SQLite {
         // Create new table
         String sql = "CREATE TABLE IF NOT EXISTS pvp_list (\n"
                 + " id integer PRIMARY KEY,\n"
-                + " player text NOT NULL,\n"
-                + " protection integer NOT NULL,\n"
+                + " uuid text NOT NULL,\n"
                 + " duration integer\n"
                 + ");";
 
@@ -62,6 +50,60 @@ public class SQLite {
             e.printStackTrace();
         }
 
+    }
+
+    public void insertPlayer(Player player, int duration){
+        String sql = "INSERT INTO pvp_list(uuid,duration) VALUES (?,?)";
+        try {
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, player.getUniqueId().toString());
+            pstmt.setDouble(2, duration);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deletePlayer(Player player){
+        String sql = "DELETE FROM pvp_list WHERE uuid = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, player.getUniqueId().toString());
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public Integer getPlayerDuration(Player player){
+        String sql = "SELECT duration "
+                + "FROM pvp_list WHERE uuid = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+            // set the value
+            pstmt.setString(1,player.getUniqueId().toString());
+            //
+            ResultSet rs  = pstmt.executeQuery();
+
+            // loop through the result set
+            String s;
+            if(rs.next()) {
+                s = rs.getString(1);
+                return Integer.parseInt(s);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }
 

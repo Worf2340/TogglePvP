@@ -9,7 +9,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import static com.mctng.togglepvp.TogglePvP.pvpPlayers;
 
-public class onPvP implements Listener {
+public class OnPvp implements Listener {
 
     @EventHandler
     public void onPvp(EntityDamageByEntityEvent event) {

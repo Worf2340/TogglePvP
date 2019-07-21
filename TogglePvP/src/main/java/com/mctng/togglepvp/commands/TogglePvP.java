@@ -1,7 +1,6 @@
 package com.mctng.togglepvp.commands;
 
 import com.mctng.togglepvp.PvpPlayer;
-import com.mctng.togglepvp.tasks.PlayerRemoveTask;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -103,7 +102,7 @@ public class TogglePvP implements CommandExecutor {
             int adjustedDelay = multiple * delay;
             //endregion
             if (args[1].equalsIgnoreCase("on")) {
-                player.sendMessage("You can only toggle a player's PvP off using the duration parameter");
+                sender.sendMessage("You can only toggle a player's PvP off using the duration parameter");
                 return true;
             }
             else if (args[1].equalsIgnoreCase("off")) {

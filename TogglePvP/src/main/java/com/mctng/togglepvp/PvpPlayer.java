@@ -33,8 +33,7 @@ public class PvpPlayer {
             }
             else {
                 if (this.duration == -1){
-                    protectionEnabled = ChatColor.GREEN + "PvP protection is enabled for " + this.player.getName()
-                            +  " for " + this.ticksToTime(this.duration) + ".";
+                    protectionEnabled = ChatColor.GREEN + "PvP protection is enabled for " + this.player.getName();
                 }
                 else {
                     protectionEnabled = ChatColor.GREEN + "PvP protection is enabled for " + this.player.getName();
@@ -52,8 +51,8 @@ public class PvpPlayer {
         return protectionEnabled;
     }
 
-    private String ticksToTime(long ticks){
-        long seconds = ticks / 20;
+    private String ticksToTime(int ticks){
+        int seconds = ticks / 20;
         Duration duration = Duration.ofSeconds(seconds);
         return formatDuration(duration);
     }

@@ -1,6 +1,5 @@
 package com.mctng.togglepvp.commands;
 
-import com.mctng.togglepvp.PvpPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -8,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static com.mctng.togglepvp.TogglePvP.SQLHandler;
 import static com.mctng.togglepvp.TogglePvP.pvpPlayers;
 
 public class PvPStatus implements CommandExecutor {
@@ -18,7 +18,8 @@ public class PvPStatus implements CommandExecutor {
         }
 
         // If the player is checking their own Pvp status
-        if (args.length == 0){
+        System.out.println(sender.getName());
+        if ((args.length == 0) || (args[0].equalsIgnoreCase(sender.getName()))){
             if (!(sender instanceof Player)){
                 sender.sendMessage("You must specify a player argument to use this command from the console.");
                 return true;
