@@ -17,6 +17,9 @@ commands:
   pvplist:
     description: List all online PvP protected players.
     usage: /pvplist
+  potioneffects:
+    description: Lists potion effects
+
 
 permissions:
   togglepvp.pvpstatus.others:

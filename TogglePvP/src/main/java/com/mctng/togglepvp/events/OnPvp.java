@@ -1,10 +1,7 @@
 package com.mctng.togglepvp.events;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.AreaEffectCloud;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.ThrownPotion;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -20,8 +17,6 @@ public class OnPvp implements Listener {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
-
-        Player p = (Player) event.getEntity();
 
         // Melee PvP protection
         if (event.getDamager() instanceof Player){
@@ -64,50 +59,27 @@ public class OnPvp implements Listener {
             }
         }
 
-        // Bow protection
-        if (event.getDamager() instanceof Arrow){
-            Arrow arrow = (Arrow) event.getDamager();
-            if (arrow.getShooter() instanceof Player){
+        // Projectile Protection
+        if (event.getDamager() instanceof Projectile){
+            Projectile projectile = (Projectile) event.getDamager();
+            if (projectile.getShooter() instanceof Player){
                 Player player = (Player) event.getEntity();
                 if (pvpPlayers.containsKey(player.getUniqueId())){
-                    if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && arrow.getShooter() != player) {
+                    if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && projectile.getShooter() != player) {
                         event.setCancelled(true);
-                        ((Player) arrow.getShooter()).sendMessage(ChatColor.RED + "That player has PvP protection!");
+                        ((Player) projectile.getShooter()).sendMessage(ChatColor.RED + "That player has PvP protection!");
                         return;
                     }
                 }
-                else if (pvpPlayers.containsKey(((Player) arrow.getShooter()).getUniqueId())){
-                    if ((pvpPlayers.get(((Player) arrow.getShooter()).getUniqueId()).hasProtection) && arrow.getShooter() != player){
+                else if (pvpPlayers.containsKey(((Player) projectile.getShooter()).getUniqueId())){
+                    if ((pvpPlayers.get(((Player) projectile.getShooter()).getUniqueId()).hasProtection) && projectile.getShooter() != player){
                         event.setCancelled(true);
-                        ((Player) arrow.getShooter()).sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
+                        ((Player) projectile.getShooter()).sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
                         return;
                     }
                 }
             }
         }
-
-        // Splash potion protection
-        if (event.getDamager() instanceof ThrownPotion){
-            ThrownPotion potion = (ThrownPotion) event.getDamager();
-            if (potion.getShooter() instanceof Player){
-                Player player = (Player) event.getEntity();
-                if (pvpPlayers.containsKey(player.getUniqueId())){
-                    if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && potion.getShooter() != player) {
-                        event.setCancelled(true);
-                        ((Player) potion.getShooter()).sendMessage(ChatColor.RED + "That player has PvP protection!");
-                        return;
-                    }
-                }
-                else if (pvpPlayers.containsKey(((Player) potion.getShooter()).getUniqueId())){
-                    if ((pvpPlayers.get(((Player) potion.getShooter()).getUniqueId()).hasProtection) && potion.getShooter() != player){
-                        event.setCancelled(true);
-                        ((Player) potion.getShooter()).sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
-                        return;
-                    }
-                }
-            }
-        }
-
 
     }
 }

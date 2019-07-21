@@ -1,5 +1,6 @@
 package com.mctng.togglepvp;
 
+import com.mctng.togglepvp.commands.PotionEffects;
 import com.mctng.togglepvp.commands.PvPStatus;
 import com.mctng.togglepvp.commands.PvpList;
 import com.mctng.togglepvp.events.*;
@@ -24,11 +25,12 @@ public final class TogglePvP extends JavaPlugin {
         this.getCommand("togglepvp").setExecutor(new com.mctng.togglepvp.commands.TogglePvP(this));
         this.getCommand("pvpstatus").setExecutor(new PvPStatus());
         this.getCommand("pvplist").setExecutor(new PvpList());
+        this.getCommand("potioneffects").setExecutor(new PotionEffects());
         this.getServer().getPluginManager().registerEvents(new OnPvp(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerLeave(), this);
+        //this.getServer().getPluginManager().registerEvents(new OnPotionEffect(), this);
         this.getServer().getPluginManager().registerEvents(new OnSplashPotion(), this);
-        this.getServer().getPluginManager().registerEvents(new OnConsumption(), this);
 
 
 
