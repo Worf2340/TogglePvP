@@ -16,5 +16,5 @@
 ## Planned additions
 * Add protection for lingering potions and other potion effects.
 * Add permissions for each command.
-
+* Increased protection against losing protection data in a server crash.
 
