@@ -135,7 +135,8 @@ public class TogglePvP implements CommandExecutor {
                     player.sendMessage(ChatColor.GREEN + "You now have PvP protection enabled for " + delay + units + ".");
                 }
                 return true;
-            } else {
+            }
+            else {
                 return false;
             }
         }
