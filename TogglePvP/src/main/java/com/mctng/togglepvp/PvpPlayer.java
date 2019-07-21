@@ -57,12 +57,19 @@ public class PvpPlayer {
         return formatDuration(duration);
     }
 
+    public String ticksToTime(){
+        int seconds = this.duration / 20;
+        Duration duration = Duration.ofSeconds(seconds);
+        return formatDuration(duration);
+    }
+
     private static String formatDuration(Duration duration) {
         return duration.toString()
                 .substring(2)
                 .replaceAll("(\\d[HMS])(?!$)", "$1 ")
                 .toLowerCase();
     }
+
 
     public void printPlayer(){
         String player = "Name: " + this.player.getName() + ", Duration: " + this.duration;

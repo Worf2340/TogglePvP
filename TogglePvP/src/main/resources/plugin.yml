@@ -17,6 +17,9 @@ commands:
   pvpstatus:
     description: Check PvP Status of a player
     usage: /pvpstatus <player>
+  pvplist:
+    description: List all online PvP protected players.
+    usage: /pvplist
 
 permissions:
   togglepvp.pvpstatus.others:

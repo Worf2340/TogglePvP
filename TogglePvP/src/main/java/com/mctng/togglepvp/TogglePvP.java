@@ -1,6 +1,7 @@
 package com.mctng.togglepvp;
 
 import com.mctng.togglepvp.commands.PvPStatus;
+import com.mctng.togglepvp.commands.PvpList;
 import com.mctng.togglepvp.events.*;
 import com.mctng.togglepvp.sql.SQLite;
 import com.mctng.togglepvp.tasks.ProtectionExpirationTask;
@@ -22,6 +23,7 @@ public final class TogglePvP extends JavaPlugin {
     public void onEnable() {
         this.getCommand("togglepvp").setExecutor(new com.mctng.togglepvp.commands.TogglePvP(this));
         this.getCommand("pvpstatus").setExecutor(new PvPStatus());
+        this.getCommand("pvplist").setExecutor(new PvpList());
         this.getServer().getPluginManager().registerEvents(new OnPvp(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerLeave(), this);
@@ -43,6 +45,7 @@ public final class TogglePvP extends JavaPlugin {
         SQLHandler.deleteZeros();
 
         BukkitTask protectionExpirationTask = new ProtectionExpirationTask(this).runTaskTimer(this, 0, 1);
+        getLogger().info("Running add-pvplist branch");
     }
 
     @Override
