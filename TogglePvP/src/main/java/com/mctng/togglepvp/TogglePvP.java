@@ -1,9 +1,7 @@
 package com.mctng.togglepvp;
 
 import com.mctng.togglepvp.commands.PvPStatus;
-import com.mctng.togglepvp.events.OnPlayerJoin;
-import com.mctng.togglepvp.events.OnPlayerLeave;
-import com.mctng.togglepvp.events.OnPvp;
+import com.mctng.togglepvp.events.*;
 import com.mctng.togglepvp.sql.SQLite;
 import com.mctng.togglepvp.tasks.ProtectionExpirationTask;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,6 +25,9 @@ public final class TogglePvP extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new OnPvp(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerLeave(), this);
+        this.getServer().getPluginManager().registerEvents(new OnSplashPotion(), this);
+        this.getServer().getPluginManager().registerEvents(new OnConsumption(), this);
+
 
 
         pvpPlayers = new HashMap<>();
@@ -39,15 +40,18 @@ public final class TogglePvP extends JavaPlugin {
 
         SQLHandler = new SQLite(this, "plugins/TogglePvP/pvp_list.db");
         SQLHandler.createNewTable();
+        SQLHandler.deleteZeros();
 
         BukkitTask protectionExpirationTask = new ProtectionExpirationTask(this).runTaskTimer(this, 0, 1);
-        this.getLogger().info("Running latest branch.");
     }
 
     @Override
     public void onDisable() {
         pvpPlayers.forEach((UUID, pvpPlayer) -> {
-            SQLHandler.insertPlayer(pvpPlayer.player, pvpPlayer.duration);
+            if (pvpPlayer.duration != 0) {
+                System.out.println("Saving data for2 " + pvpPlayer.player.getName());
+                SQLHandler.insertPlayer(pvpPlayer.player, pvpPlayer.duration);
+            }
         });
     }
 }

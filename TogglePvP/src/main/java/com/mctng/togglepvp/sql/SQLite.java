@@ -45,6 +45,7 @@ public class SQLite {
         try (Connection conn = DriverManager.getConnection(url);
             Statement statement = conn.createStatement()){
             statement.execute(sql);
+            this.plugin.getLogger().info("Connected to SQLite database.");
             this.plugin.getLogger().info("Initialized SQLite table.");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,6 +105,22 @@ public class SQLite {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public void deleteZeros(){
+        String sql = "DELETE FROM pvp_list WHERE duration = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, 0);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 

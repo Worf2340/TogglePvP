@@ -64,4 +64,9 @@ public class PvpPlayer {
                 .toLowerCase();
     }
 
+    public void printPlayer(){
+        String player = "Name: " + this.player.getName() + ", Duration: " + this.duration;
+        System.out.println(player);
+    }
+
 }

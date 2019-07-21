@@ -46,11 +46,17 @@ public class TogglePvP implements CommandExecutor {
                     sender.sendMessage(ChatColor.RED + "PvP protection already disabled for " + player.getName() + ".");
                     return true;
                 }
+
                 pvpPlayers.get(player.getUniqueId()).hasProtection = false;
                 pvpPlayers.get(player.getUniqueId()).duration = 0;
                 sender.sendMessage(ChatColor.RED + "PvP protection disabled for " + player.getName() + ".");
+                // Notify the player their protection has been disabled
+                if (sender != player){
+                    player.sendMessage(ChatColor.RED + "Your PvP protection has been disabled.");
+                }
                 return true;
-            } else if (args[1].equalsIgnoreCase("off")) {
+            }
+            else if (args[1].equalsIgnoreCase("off")) {
                 // Create a new PvpPlayer object if one doesn't already exist in pvpPlayers
                 PvpPlayer pvpPlayer;
                 if (pvpPlayers.containsKey(player.getUniqueId())) {
@@ -66,8 +72,12 @@ public class TogglePvP implements CommandExecutor {
                 }
                 pvpPlayers.put(player.getUniqueId(), pvpPlayer);
                 sender.sendMessage(ChatColor.GREEN + "PvP protection enabled for " + player.getName() + ".");
+                if (sender != player){
+                    player.sendMessage(ChatColor.GREEN + "You now have PvP protection enabled.");
+                }
                 return true;
-            } else {
+            }
+            else {
                 return false;
             }
         }
@@ -102,7 +112,7 @@ public class TogglePvP implements CommandExecutor {
             int adjustedDelay = multiple * delay;
             //endregion
             if (args[1].equalsIgnoreCase("on")) {
-                sender.sendMessage("You can only toggle a player's PvP off using the duration parameter");
+                sender.sendMessage("You can only use the duration parameter to disable a player's pvp.");
                 return true;
             }
             else if (args[1].equalsIgnoreCase("off")) {
@@ -121,6 +131,9 @@ public class TogglePvP implements CommandExecutor {
                 }
                 pvpPlayers.put(player.getUniqueId(), pvpPlayer);
                 sender.sendMessage(ChatColor.GREEN + "PvP protection enabled for " + player.getName() + " for " + delay + units + ".");
+                if (sender != player){
+                    player.sendMessage(ChatColor.GREEN + "You now have PvP protection enabled for " + delay + units + ".");
+                }
                 return true;
             } else {
                 return false;
