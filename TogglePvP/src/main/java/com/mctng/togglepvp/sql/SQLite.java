@@ -31,11 +31,11 @@ public class SQLite {
         return conn;
     }
 
-    public void createNewTable(){
+    public void createNewTable(String tableName){
         String url = "jdbc:sqlite:" + this.filePath;
 
         // Create new table
-        String sql = "CREATE TABLE IF NOT EXISTS pvp_list (\n"
+        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + "(\n"
                 + " id integer PRIMARY KEY,\n"
                 + " uuid text NOT NULL,\n"
                 + " duration integer\n"

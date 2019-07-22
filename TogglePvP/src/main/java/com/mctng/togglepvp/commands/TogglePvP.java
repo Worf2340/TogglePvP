@@ -33,10 +33,47 @@ public class TogglePvP implements CommandExecutor {
             return true;
         }
 
+        // Permission checks
+        if (args[1].equalsIgnoreCase("on")) {
+            if (player == sender){
+                if (!(sender.hasPermission("togglepvp.togglepvp.on"))){
+                    sender.sendMessage(ChatColor.RED + "You are missing the required permission togglepvp.togglepvp.on");
+                    return true;
+                }
+            }
+            else {
+                if (!(sender.hasPermission("togglepvp.togglepvp.others.on"))){
+                    sender.sendMessage(ChatColor.RED + "You are missing the required permission togglepvp.togglepvp.others.on");
+                    return true;
+                }
+            }
+        }
+        else if (args[1].equalsIgnoreCase("off")){
+            if (player == sender) {
+                if (!(sender.hasPermission("togglepvp.togglepvp.off"))){
+                    sender.sendMessage(ChatColor.RED + "You are missing the required permission togglepvp.togglepvp.off");
+                    return true;
+                }
+            }
+            else {
+                if (!(sender.hasPermission("togglepvp.togglepvp.others.off"))){
+                    sender.sendMessage(ChatColor.RED + "You are missing the required permission togglepvp.togglepvp.others.off");
+                    return true;
+                }
+            }
+        }
 
-        // PvP protection untimed
+
+
+            // PvP protection untimed
         if (args.length == 2) {
             if (args[1].equalsIgnoreCase("on")) {
+
+                // Check if player needs togglepvp.togglepvp.others.on permission
+                if (player != sender){
+
+                }
+
                 // Do nothing if player is not PvP protected
                 if (!(pvpPlayers.containsKey(player.getUniqueId()))) {
                     sender.sendMessage(ChatColor.RED + "PvP protection already disabled for " + player.getName() + ".");

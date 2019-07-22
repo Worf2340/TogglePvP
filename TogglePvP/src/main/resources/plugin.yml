@@ -10,18 +10,66 @@ website: www.mctng.com
 commands:
   togglepvp:
     description: Toggle PvP for a player
-    usage: /togglepvp [player] [on/off] <duration(h/m)>
+    usage: /togglepvp [player] [on/off] <duration>
+    permission: togglepvp.togglepvp
+    permission-message: §cYou are missing the required permission <permission>.
   pvpstatus:
     description: Check PvP Status of a player
     usage: /pvpstatus <player>
+    permission: togglepvp.pvpstatus
+    permission-message: §cYou are missing the required permission <permission>.
   pvplist:
     description: List all online PvP protected players.
     usage: /pvplist
-  potioneffects:
-    description: Lists potion effects
-
+    permission: togglepvp.pvplist
+    permission-message: §cYou are missing the required permission <permission>.
 
 permissions:
-  togglepvp.pvpstatus.others:
-    description: Check pvp status of other players
+  togglepvp.*:
+    description: Gives access to all TogglePvP commands.
     default: op
+    children:
+      togglepvp.pvpstatus.others: true
+      togglepvp.pvpstatus: true
+      togglepvp.pvplist: true
+      togglepvp.togglepvp.on: true
+      togglepvp.togglepvp.off: true
+      togglepvp.togglepvp.others.on: true
+      togglepvp.togglepcp.others.off: true
+  togglepvp.togglepvp.*:
+    description: Gives access to /togglepvp and all subcommands.
+    default: op
+    children:
+      togglepvp.togglepvp: true
+      togglepvp.togglepvp.on: true
+      togglepvp.togglepvp.off: true
+      togglepvp.togglepvp.others.on: true
+      togglepvp.togglepvp.others.off: true
+  togglepvp.pvpstatus.others:
+    description: Check pvp status of other players.
+    default: op
+    children:
+      togglepvp.pvpstatus: true
+  togglepvp.pvpstatus:
+    description: Check your own pvp status.
+    default: false
+  togglepvp.pvplist:
+    description: Use the /pvplist command.
+    default: op
+  togglepvp.togglepvp:
+    description: Needed to use any of the /togglepvp commands
+    default: false
+  togglepvp.togglepvp.on:
+    description: Turn on PvP for yourself.
+    default: false
+  togglepvp.togglepvp.off:
+    description: Turn off PvP for yourself.
+    default: false
+  togglepvp.togglepvp.others.on:
+    description: Turn on PvP for others.
+    default: false
+  togglepvp.togglepvp.others.off:
+    description: Turn off pvp for others.
+    default: false
+
+

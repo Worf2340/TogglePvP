@@ -25,7 +25,6 @@ public final class TogglePvP extends JavaPlugin {
         this.getCommand("togglepvp").setExecutor(new com.mctng.togglepvp.commands.TogglePvP(this));
         this.getCommand("pvpstatus").setExecutor(new PvPStatus());
         this.getCommand("pvplist").setExecutor(new PvpList());
-        this.getCommand("potioneffects").setExecutor(new PotionEffects());
         this.getServer().getPluginManager().registerEvents(new OnPvp(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerLeave(), this);
@@ -43,7 +42,7 @@ public final class TogglePvP extends JavaPlugin {
         }
 
         SQLHandler = new SQLite(this, "plugins/TogglePvP/pvp_list.db");
-        SQLHandler.createNewTable();
+        SQLHandler.createNewTable("pvp_list");
         SQLHandler.deleteZeros();
 
         BukkitTask protectionExpirationTask = new ProtectionExpirationTask(this).runTaskTimer(this, 0, 1);

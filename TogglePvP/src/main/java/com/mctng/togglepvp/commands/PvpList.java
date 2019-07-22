@@ -14,6 +14,11 @@ public class PvpList implements CommandExecutor {
         if (args.length != 0){
             return false;
         }
+
+        if (!(sender.hasPermission("togglepvp.pvplist"))){
+            return false;
+        }
+
         if (pvpPlayers.size() == 0){
             sender.sendMessage(ChatColor.RED + "There are no PvP protected players.");
             return true;
