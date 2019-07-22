@@ -28,7 +28,7 @@ public class OnPvp implements Listener {
                     return;
                 }
             }
-            else if (pvpPlayers.containsKey(event.getDamager().getUniqueId())){
+            if (pvpPlayers.containsKey(event.getDamager().getUniqueId())){
                 if ((pvpPlayers.get(event.getDamager().getUniqueId()).hasProtection) && event.getDamager() != player){
                     event.setCancelled(true);
                     event.getDamager().sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
@@ -49,7 +49,7 @@ public class OnPvp implements Listener {
                         return;
                     }
                 }
-                else if (pvpPlayers.containsKey(((Player) effectCloud.getSource()).getUniqueId())){
+                if (pvpPlayers.containsKey(((Player) effectCloud.getSource()).getUniqueId())){
                     if ((pvpPlayers.get(((Player) effectCloud.getSource()).getUniqueId()).hasProtection) && effectCloud.getSource() != player){
                         event.setCancelled(true);
                         ((Player) effectCloud.getSource()).sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
@@ -71,7 +71,7 @@ public class OnPvp implements Listener {
                         return;
                     }
                 }
-                else if (pvpPlayers.containsKey(((Player) projectile.getShooter()).getUniqueId())){
+                if (pvpPlayers.containsKey(((Player) projectile.getShooter()).getUniqueId())){
                     if ((pvpPlayers.get(((Player) projectile.getShooter()).getUniqueId()).hasProtection) && projectile.getShooter() != player){
                         event.setCancelled(true);
                         ((Player) projectile.getShooter()).sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
