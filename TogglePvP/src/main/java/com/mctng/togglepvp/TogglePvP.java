@@ -1,10 +1,9 @@
 package com.mctng.togglepvp;
 
-import com.mctng.togglepvp.commands.PotionEffects;
 import com.mctng.togglepvp.commands.PvPStatus;
-import com.mctng.togglepvp.commands.PvpList;
 import com.mctng.togglepvp.events.*;
-import com.mctng.togglepvp.sql.SQLite;
+import com.mctng.togglepvp.sql.PvpList;
+import com.mctng.togglepvp.sql.UuidCache;
 import com.mctng.togglepvp.tasks.ProtectionExpirationTask;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -18,13 +17,14 @@ import java.util.UUID;
 public final class TogglePvP extends JavaPlugin {
 
     public static HashMap<UUID, PvpPlayer> pvpPlayers;
-    public static SQLite SQLHandler;
+    public static PvpList pvpListDb;
+    public static UuidCache uuidCacheDb;
 
     @Override
     public void onEnable() {
         this.getCommand("togglepvp").setExecutor(new com.mctng.togglepvp.commands.TogglePvP(this));
         this.getCommand("pvpstatus").setExecutor(new PvPStatus());
-        this.getCommand("pvplist").setExecutor(new PvpList());
+        this.getCommand("pvplist").setExecutor(new com.mctng.togglepvp.commands.PvpList());
         this.getServer().getPluginManager().registerEvents(new OnPvp(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
         this.getServer().getPluginManager().registerEvents(new OnPlayerLeave(), this);
@@ -41,12 +41,14 @@ public final class TogglePvP extends JavaPlugin {
             dir.mkdir();
         }
 
-        SQLHandler = new SQLite(this, "plugins/TogglePvP/pvp_list.db");
-        SQLHandler.createNewTable("pvp_list");
-        SQLHandler.deleteZeros();
+        pvpListDb = new PvpList(this, "plugins/TogglePvP/pvp_list.db");
+        uuidCacheDb = new UuidCache("plugins/TogglePvP/uuid_cache.db");
+
+        pvpListDb.createNewPvPListTable("pvp_list");
+        uuidCacheDb.createNewUuidCacheTable();
+        pvpListDb.deleteZeros();
 
         BukkitTask protectionExpirationTask = new ProtectionExpirationTask(this).runTaskTimer(this, 0, 1);
-        getLogger().info("Running add-pvplist branch");
     }
 
     @Override
@@ -54,7 +56,7 @@ public final class TogglePvP extends JavaPlugin {
         pvpPlayers.forEach((UUID, pvpPlayer) -> {
             if (pvpPlayer.duration != 0) {
                 System.out.println("Saving data for2 " + pvpPlayer.player.getName());
-                SQLHandler.insertPlayer(pvpPlayer.player, pvpPlayer.duration);
+                pvpListDb.insertPlayer(pvpPlayer.player, pvpPlayer.duration);
             }
         });
     }

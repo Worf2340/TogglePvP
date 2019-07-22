@@ -9,18 +9,18 @@ import java.util.UUID;
 
 import static org.bukkit.Bukkit.getLogger;
 
-public class SQLite {
+public class PvpList {
 
     private TogglePvP plugin;
     private String filePath;
 
-    public SQLite(TogglePvP plugin, String filePath){
+    public PvpList(TogglePvP plugin, String filePath){
         this.plugin = plugin;
         this.filePath = filePath;
     }
 
     private Connection connect(){
-        // SQLite connection string
+        // PvpList connection string
         String url = "jdbc:sqlite:" + this.filePath;
         Connection conn = null;
         try {
@@ -31,7 +31,7 @@ public class SQLite {
         return conn;
     }
 
-    public void createNewTable(String tableName){
+    public void createNewPvPListTable(String tableName){
         String url = "jdbc:sqlite:" + this.filePath;
 
         // Create new table
@@ -45,8 +45,8 @@ public class SQLite {
         try (Connection conn = DriverManager.getConnection(url);
             Statement statement = conn.createStatement()){
             statement.execute(sql);
-            this.plugin.getLogger().info("Connected to SQLite database.");
-            this.plugin.getLogger().info("Initialized SQLite table.");
+            this.plugin.getLogger().info("Connected to PvpList database.");
+            this.plugin.getLogger().info("Initialized PvpList table pvp_list.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -122,5 +122,6 @@ public class SQLite {
             System.out.println(e.getMessage());
         }
     }
+
 }
 

@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import static com.mctng.togglepvp.TogglePvP.SQLHandler;
+import static com.mctng.togglepvp.TogglePvP.pvpListDb;
 import static com.mctng.togglepvp.TogglePvP.pvpPlayers;
 
 public class OnPlayerLeave implements Listener {
@@ -16,7 +16,7 @@ public class OnPlayerLeave implements Listener {
         if (pvpPlayers.containsKey(leftPlayer.getUniqueId())){
             if (pvpPlayers.get(leftPlayer.getUniqueId()).hasProtection) {
                 // Insert player data into database
-                SQLHandler.insertPlayer(event.getPlayer(), pvpPlayers.get(leftPlayer.getUniqueId()).duration);
+                pvpListDb.insertPlayer(event.getPlayer(), pvpPlayers.get(leftPlayer.getUniqueId()).duration);
                 System.out.println("Saving data for " + event.getPlayer().getName());
                 pvpPlayers.remove(leftPlayer.getUniqueId());
             }

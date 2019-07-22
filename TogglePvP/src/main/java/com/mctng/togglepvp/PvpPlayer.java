@@ -36,7 +36,7 @@ public class PvpPlayer {
                     protectionEnabled = ChatColor.GREEN + "PvP protection is enabled for " + this.player.getName();
                 }
                 else {
-                    protectionEnabled = ChatColor.GREEN + "PvP protection is enabled for " + this.player.getName();
+                    protectionEnabled = ChatColor.GREEN + "PvP protection is enabled for " + this.player.getName() + this.ticksToTime(this.duration) + ".";
                 }
             }
         }

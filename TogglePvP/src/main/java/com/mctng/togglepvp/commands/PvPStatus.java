@@ -2,13 +2,11 @@ package com.mctng.togglepvp.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static com.mctng.togglepvp.TogglePvP.SQLHandler;
 import static com.mctng.togglepvp.TogglePvP.pvpPlayers;
 
 public class PvPStatus implements CommandExecutor {
