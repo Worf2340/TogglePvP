@@ -33,4 +33,5 @@
 * Add protection for potions of weakness, slowness, and poison.
 * Increased protection against losing protection data in a server crash.
 * View /pvpstatus information for offline players.
+* MySQL support?
 
