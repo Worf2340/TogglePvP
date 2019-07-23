@@ -26,12 +26,15 @@
  
 ## Features 
 * Protects against normal PvP, spalsh potions of harming, and lingering potions of harming, and all projectiles.
+* Add protection for potions of weakness, slowness, and poison.
 * Warnings at 30m, 15m, 5m, and 1m for PvP protection expiration.
 * Keep PvP status when player's logout or the server restarts.
   
 ## Planned additions
-* Add protection for potions of weakness, slowness, and poison.
 * Increased protection against losing protection data in a server crash.
 * View /pvpstatus information for offline players.
+* Have /pvplist optionally display information for offline players. 
 * MySQL support?
+* Add a config.
+* Protect against tnt. 
 
