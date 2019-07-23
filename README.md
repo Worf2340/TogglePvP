@@ -37,4 +37,5 @@
 * MySQL support?
 * Add a config.
 * Protect against tnt. 
+* Refractor code to standardize PvP messages. 
 
