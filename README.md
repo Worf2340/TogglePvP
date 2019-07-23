@@ -1,4 +1,4 @@
-# TogglePvP v0.3
+# TogglePvP v0.3-beta
 ## STILL IN DEVELOPMENT
 ## A Spigot Plugin to Toggle PvP per player. 
 
