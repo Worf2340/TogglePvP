@@ -9,9 +9,9 @@ protection:
       weakness: true
       poison: true
       slowness: true
-    combat:
-      melee: true
-      projectile: true
+  combat:
+    melee: true
+    projectile: true
 
 
 

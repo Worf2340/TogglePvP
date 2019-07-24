@@ -29,20 +29,21 @@ public class OnPvp implements Listener {
         // Melee PvP protection
         if (event.getDamager() instanceof Player){
             if (!(this.plugin.getConfig().getBoolean("protection.combat.melee"))){
+                System.out.println("config");
                 return;
             }
             Player player = (Player) event.getEntity();
-            if (pvpPlayers.containsKey(player.getUniqueId())){
-                if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && event.getDamager() != player) {
-                    event.setCancelled(true);
-                    event.getDamager().sendMessage(ChatColor.RED + "That player has PvP protection!");
-                    return;
-                }
-            }
             if (pvpPlayers.containsKey(event.getDamager().getUniqueId())){
                 if ((pvpPlayers.get(event.getDamager().getUniqueId()).hasProtection) && event.getDamager() != player){
                     event.setCancelled(true);
                     event.getDamager().sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
+                    return;
+                }
+            }
+            if (pvpPlayers.containsKey(player.getUniqueId())){
+                if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && event.getDamager() != player) {
+                    event.setCancelled(true);
+                    event.getDamager().sendMessage(ChatColor.RED + "That player has PvP protection!");
                     return;
                 }
             }
@@ -61,17 +62,17 @@ public class OnPvp implements Listener {
             AreaEffectCloud effectCloud = (AreaEffectCloud) event.getDamager();
             if (effectCloud.getSource() instanceof Player){
                 Player player = (Player) event.getEntity();
-                if (pvpPlayers.containsKey(player.getUniqueId())){
-                    if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && effectCloud.getSource() != player) {
-                        event.setCancelled(true);
-                        ((Player) effectCloud.getSource()).sendMessage(ChatColor.RED + "That player has PvP protection!");
-                        return;
-                    }
-                }
                 if (pvpPlayers.containsKey(((Player) effectCloud.getSource()).getUniqueId())){
                     if ((pvpPlayers.get(((Player) effectCloud.getSource()).getUniqueId()).hasProtection) && effectCloud.getSource() != player){
                         event.setCancelled(true);
                         ((Player) effectCloud.getSource()).sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");
+                        return;
+                    }
+                }
+                if (pvpPlayers.containsKey(player.getUniqueId())){
+                    if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && effectCloud.getSource() != player) {
+                        event.setCancelled(true);
+                        ((Player) effectCloud.getSource()).sendMessage(ChatColor.RED + "That player has PvP protection!");
                         return;
                     }
                 }
@@ -99,13 +100,6 @@ public class OnPvp implements Listener {
 
             if (projectile.getShooter() instanceof Player){
                 Player player = (Player) event.getEntity();
-                if (pvpPlayers.containsKey(player.getUniqueId())){
-                    if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && projectile.getShooter() != player) {
-                        event.setCancelled(true);
-                        ((Player) projectile.getShooter()).sendMessage(ChatColor.RED + "That player has PvP protection!");
-                        return;
-                    }
-                }
                 if (pvpPlayers.containsKey(((Player) projectile.getShooter()).getUniqueId())){
                     if ((pvpPlayers.get(((Player) projectile.getShooter()).getUniqueId()).hasProtection) && projectile.getShooter() != player){
                         event.setCancelled(true);
@@ -113,8 +107,13 @@ public class OnPvp implements Listener {
                         return;
                     }
                 }
+                if (pvpPlayers.containsKey(player.getUniqueId())){
+                    if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && projectile.getShooter() != player) {
+                        event.setCancelled(true);
+                        ((Player) projectile.getShooter()).sendMessage(ChatColor.RED + "That player has PvP protection!");
+                    }
+                }
             }
         }
-
     }
 }
