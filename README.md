@@ -1,4 +1,4 @@
-# TogglePvP v0.3-beta
+# TogglePvP v0.4-beta
 ## STILL IN DEVELOPMENT
 ## A Spigot Plugin to Toggle PvP per player. 
 
@@ -31,11 +31,7 @@
 * Keep PvP status when player's logout or the server restarts.
   
 ## Planned additions
-* Increased protection against losing protection data in a server crash.
 * View /pvpstatus information for offline players.
 * Have /pvplist optionally display information for offline players. 
 * MySQL support?
-* Add a config.
-* Protect against tnt. 
-* Refractor code to standardize PvP messages. 
 
