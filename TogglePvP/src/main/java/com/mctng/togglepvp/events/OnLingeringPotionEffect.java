@@ -11,16 +11,16 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.mctng.togglepvp.TogglePvP.protectedPotions;
 import static com.mctng.togglepvp.TogglePvP.pvpPlayers;
 
 public class OnLingeringPotionEffect implements Listener {
     @EventHandler
     public void onLingeringPotion(AreaEffectCloudApplyEvent event){
 
-        String[] protectedPotions = {"POISON", "SLOW", "WEAKNESS"};
 
         PotionEffectType effectType = event.getEntity().getBasePotionData().getType().getEffectType();
-        if (Arrays.asList(protectedPotions).contains(effectType.getName())){
+        if (protectedPotions.contains(effectType.getName())){
             if (event.getEntity().getSource() instanceof Player) {
                 Player attacker = (Player) event.getEntity().getSource();
 

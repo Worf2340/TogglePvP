@@ -1,0 +1,20 @@
+# Setting these to true will protect against them for PvP protected players.
+protection:
+  potions:
+    types:
+      splash-potions: true
+      lingering-potions: true
+    effects:
+      instant-damage: true
+      weakness: true
+      poison: true
+      slowness: true
+    combat:
+      melee: true
+      projectile: true
+
+
+
+
+
+

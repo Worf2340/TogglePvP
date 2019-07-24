@@ -1,5 +1,6 @@
 package com.mctng.togglepvp.events;
 
+import com.mctng.togglepvp.TogglePvP;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -8,27 +9,33 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.mctng.togglepvp.TogglePvP.protectedPotions;
 import static com.mctng.togglepvp.TogglePvP.pvpPlayers;
 
 public class OnSplashPotion implements Listener {
+
+    private TogglePvP plugin;
+
+    public OnSplashPotion(TogglePvP plugin){
+        this.plugin = plugin;
+    }
+
     @EventHandler
-
-    public void onSplashPotion(PotionSplashEvent event){
-
-        String[] protectedPotions = {"POISON", "SLOW", "WEAKNESS"};
+    public void onSplashPotion(PotionSplashEvent event) {
 
         PotionEffectType effectType = event.getEntity().getEffects().iterator().next().getType();
-         if (Arrays.asList(protectedPotions).contains(effectType.getName())){
+        if (protectedPotions.contains(effectType.getName())) {
             if (event.getEntity().getShooter() instanceof Player) {
                 Player attacker = (Player) event.getEntity().getShooter();
 
                 // Cancel all affected players if the attacker has pvp protection
-                if (pvpPlayers.containsKey(attacker.getUniqueId())){
+                if (pvpPlayers.containsKey(attacker.getUniqueId())) {
                     if (pvpPlayers.get(attacker.getUniqueId()).hasProtection) {
-                        for (Entity e : event.getAffectedEntities()){
-                            if (e instanceof Player){
+                        for (Entity e : event.getAffectedEntities()) {
+                            if (e instanceof Player) {
                                 if (e != attacker) {
                                     event.setIntensity((Player) e, 0);
                                     attacker.sendMessage(ChatColor.RED + "You can't attack players while you have PvP protection!");

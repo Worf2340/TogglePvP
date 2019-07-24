@@ -1,5 +1,6 @@
 package com.mctng.togglepvp.events;
 
+import com.mctng.togglepvp.TogglePvP;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -7,9 +8,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import static com.mctng.togglepvp.TogglePvP.pvpPlayers;
+import static org.bukkit.plugin.java.JavaPlugin.getPlugin;
 
 @SuppressWarnings("Duplicates")
 public class OnPvp implements Listener {
+
+    private TogglePvP plugin;
+
+    public OnPvp(TogglePvP plugin){
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void onPvp(EntityDamageByEntityEvent event) {
@@ -20,6 +28,9 @@ public class OnPvp implements Listener {
 
         // Melee PvP protection
         if (event.getDamager() instanceof Player){
+            if (!(this.plugin.getConfig().getBoolean("protection.combat.melee"))){
+                return;
+            }
             Player player = (Player) event.getEntity();
             if (pvpPlayers.containsKey(player.getUniqueId())){
                 if ((pvpPlayers.get(player.getUniqueId()).hasProtection) && event.getDamager() != player) {
@@ -39,6 +50,14 @@ public class OnPvp implements Listener {
 
         // Lingering potion protection
         if (event.getDamager() instanceof AreaEffectCloud){
+
+            if (!(this.plugin.getConfig().getBoolean("protection.potions.types.lingering-potions"))){
+                return;
+            }
+            if (!(this.plugin.getConfig().getBoolean("protection.potions.effects.instant-damage"))){
+                return;
+            }
+
             AreaEffectCloud effectCloud = (AreaEffectCloud) event.getDamager();
             if (effectCloud.getSource() instanceof Player){
                 Player player = (Player) event.getEntity();
@@ -62,6 +81,22 @@ public class OnPvp implements Listener {
         // Projectile Protection
         if (event.getDamager() instanceof Projectile){
             Projectile projectile = (Projectile) event.getDamager();
+
+            if (!(this.plugin.getConfig().getBoolean("protection.combat.projectile"))){
+                if (!(projectile instanceof ThrownPotion)) {
+                    return;
+                }
+            }
+
+            if (projectile instanceof ThrownPotion){
+                if (!(this.plugin.getConfig().getBoolean("protection.potions.types.splash-potions"))){
+                    return;
+                }
+                if (!(this.plugin.getConfig().getBoolean("protection.potions.effects.instant-damage"))){
+                    return;
+                }
+            }
+
             if (projectile.getShooter() instanceof Player){
                 Player player = (Player) event.getEntity();
                 if (pvpPlayers.containsKey(player.getUniqueId())){

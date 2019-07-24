@@ -7,16 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30e317e7-f35e-400c-8188-0e8b7115be00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/CreateDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/testsql/SQLite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TogglePvP_jar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/TogglePvP_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xerial_sqlite_jdbc_3_27_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TogglePvP/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_13_2_R0_1_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_13_2_R0_1_SNAPSHOT.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TogglePvP/TogglePvP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/TogglePvP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TogglePvP/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/TogglePvP.java" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/TogglePvP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/testsql/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/testsql/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/Errors.java" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/testsql/Errors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/SQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/SQLite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/events/OnPvp.java" beforeDir="false" afterPath="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/events/OnPvp.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/TogglePvP/target/" />
@@ -29,18 +27,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/MyEvents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="76" column="114" selection-start-line="76" selection-start-column="114" selection-end-line="76" selection-end-column="114" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
@@ -52,22 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/commands/TogglePvP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#521#522#0" expanded="true" />
-                <element signature="e#557#558#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/tasks/PlayerRemoveTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
+            <state relative-caret-position="624">
+              <caret line="119" column="9" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,22 +50,48 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/TogglePvP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="49" column="70" selection-start-line="49" selection-start-column="70" selection-end-line="49" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TogglePvP/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/events/OnPlayerLeave.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/CreateDatabase.java">
+        <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/resources/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+            <state relative-caret-position="102">
+              <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/events/OnPvp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="36" column="45" lean-forward="true" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#518#519#0" expanded="true" />
+                <element signature="e#554#555#0" expanded="true" />
+                <element signature="e#1571#2733#1" />
               </folding>
             </state>
           </provider>
@@ -103,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/commands/PvPStatus.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="748">
-              <caret line="51" column="113" selection-start-line="51" selection-start-column="113" selection-end-line="51" selection-end-column="113" />
+              <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,6 +120,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -149,8 +152,11 @@
         <option value="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/Database.java" />
         <option value="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/testsql/Database.java" />
         <option value="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/Create.java" />
-        <option value="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/TogglePvP.java" />
         <option value="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/sql/CreateDatabase.java" />
+        <option value="$PROJECT_DIR$/TogglePvP/src/main/resources/config.yml" />
+        <option value="$PROJECT_DIR$/TogglePvP/pom.xml" />
+        <option value="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/events/OnPvp.java" />
+        <option value="$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/TogglePvP.java" />
       </list>
     </option>
   </component>
@@ -159,6 +165,7 @@
       <MavenImportingSettings>
         <option name="downloadDocsAutomatically" value="true" />
         <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
   </component>
@@ -180,7 +187,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="105" />
-    <option name="y" value="-24" />
+    <option name="y" value="-25" />
     <option name="width" value="785" />
     <option name="height" value="835" />
   </component>
@@ -190,8 +197,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -232,34 +237,18 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="togglepvp" type="462c0819:PsiDirectoryNode" />
-              <item name="sql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TogglePvP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TogglePvP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="togglepvp" type="462c0819:PsiDirectoryNode" />
-              <item name="testsql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TogglePvP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TogglePvP" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TogglePvP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563503508916" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563946209657" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/sqlite-jdbc-3.7.2.jar/sqlite-jdbc-3.7.2.jar!/" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -372,8 +361,8 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7946176" visible="true" weight="0.16510066" />
-      <window_info id="Structure" order="1" sideWeight="0.20538244" side_tool="true" visible="true" weight="0.16510066" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.79320115" visible="true" weight="0.1671141" />
+      <window_info id="Structure" order="1" sideWeight="0.20679887" side_tool="true" visible="true" weight="0.1671141" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -465,7 +454,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/PvPPlayer.java">
+    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/PvpPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" selection-start-line="5" selection-end-line="5" />
@@ -539,25 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/commands/TogglePvP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/tasks/PlayerRemoveTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -568,20 +538,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/TogglePvP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/commands/PvPStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
-          <caret line="51" column="113" selection-start-line="51" selection-start-column="113" selection-end-line="51" selection-end-column="113" />
+          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -595,6 +555,63 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/events/OnPlayerLeave.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/commands/TogglePvP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="119" column="9" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TogglePvP/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/events/OnPvp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="36" column="45" lean-forward="true" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+          <folding>
+            <element signature="e#518#519#0" expanded="true" />
+            <element signature="e#554#555#0" expanded="true" />
+            <element signature="e#1571#2733#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/java/com/mctng/togglepvp/TogglePvP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="49" column="70" selection-start-line="49" selection-start-column="70" selection-end-line="49" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TogglePvP/src/main/resources/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
         </state>
       </provider>
     </entry>
