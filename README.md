@@ -1,5 +1,4 @@
 # TogglePvP v1.0
-## STILL IN DEVELOPMENT
 ## A Spigot Plugin to Toggle PvP per player. 
 
 ## Commands
