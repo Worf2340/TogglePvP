@@ -1,5 +1,6 @@
 package com.mctng.togglepvp.commands;
 
+import com.mctng.togglepvp.PvpPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -45,8 +46,20 @@ public class PvPStatus implements CommandExecutor {
 
             Player checkPlayer = Bukkit.getServer().getPlayer(args[0]);
 
+            // If the player is offline
             if (checkPlayer == null) {
-                sender.sendMessage(ChatColor.RED + "Invalid player name!");
+                Integer duration = SQLHandler.getPlayerDurationByName(args[0]);
+                if (duration != null){
+                    if (duration == -1){
+                        sender.sendMessage(ChatColor.GREEN + "PvP protection is enabled for " + args[0] + " once online");
+                    }
+                    else {
+                        sender.sendMessage(ChatColor.GREEN + "PvP protection is enabled for " + args[0] + " for " + PvpPlayer.ticksToTime(duration) + " once online.");
+                    }
+                }
+                else {
+                    sender.sendMessage(ChatColor.RED + "There is no protection data for this player!");
+                }
                 return true;
             }
 

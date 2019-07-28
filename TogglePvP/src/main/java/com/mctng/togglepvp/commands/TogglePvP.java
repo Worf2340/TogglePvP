@@ -167,9 +167,9 @@ public class TogglePvP implements CommandExecutor {
                     pvpPlayer = new PvpPlayer(player, true, adjustedDelay);
                 }
                 pvpPlayers.put(player.getUniqueId(), pvpPlayer);
-                sender.sendMessage(ChatColor.GREEN + "PvP protection enabled for " + player.getName() + " for " + delay + units + ".");
+                sender.sendMessage(ChatColor.GREEN + "PvP protection enabled for " + player.getName() + " for " + PvpPlayer.ticksToTime(adjustedDelay) + ".");
                 if (sender != player){
-                    player.sendMessage(ChatColor.GREEN + "You now have PvP protection enabled for " + delay + units + ".");
+                    player.sendMessage(ChatColor.GREEN + "You now have PvP protection enabled for " + PvpPlayer.ticksToTime(adjustedDelay) + ".");
                 }
                 return true;
             }

@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.sql.*;
+import java.util.HashMap;
 import java.util.UUID;
 
 import static org.bukkit.Bukkit.getLogger;
@@ -38,7 +39,8 @@ public class SQLite {
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + "(\n"
                 + " id integer PRIMARY KEY,\n"
                 + " uuid text NOT NULL,\n"
-                + " duration integer\n"
+                + " duration integer,\n"
+                + " username text NOT NULL\n"
                 + ");";
 
 
@@ -54,12 +56,13 @@ public class SQLite {
     }
 
     public void insertPlayer(Player player, int duration){
-        String sql = "INSERT INTO pvp_list(uuid,duration) VALUES (?,?)";
+        String sql = "INSERT INTO pvp_list(uuid,duration,username) VALUES (?,?,?)";
         try {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, player.getUniqueId().toString());
             pstmt.setDouble(2, duration);
+            pstmt.setString(3,player.getName().toUpperCase());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,5 +125,61 @@ public class SQLite {
             System.out.println(e.getMessage());
         }
     }
+
+    public Integer getPlayerDurationByName(String userName){
+        String sql = "SELECT duration "
+                + "FROM pvp_list WHERE username = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+            // set the value
+            pstmt.setString(1,userName.toUpperCase());
+            //
+            ResultSet rs  = pstmt.executeQuery();
+
+            // loop through the result set
+            String s;
+            if(rs.next()) {
+                s = rs.getString(1);
+                return Integer.parseInt(s);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public HashMap<String,Integer> getAllPlayers(){
+        String sql = "SELECT * "
+                + "FROM pvp_list";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+            // set the value
+            //
+            ResultSet rs  = pstmt.executeQuery();
+
+            // loop through the result set
+            String name;
+            Integer duration;
+            HashMap<String,Integer> players = new HashMap<>();
+            while(rs.next()) {
+                name = rs.getString("username");
+                duration = rs.getInt("duration");
+                players.put(name,duration);
+                System.out.println(name + ": " + duration);
+
+            }
+            return players;
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 }
 
